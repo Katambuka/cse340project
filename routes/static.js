@@ -9,3 +9,4 @@ router.use("/js", express.static(__dirname + "public/js"));
 router.use("/images", express.static(__dirname + "public/images"));
 
 module.exports = router;
+

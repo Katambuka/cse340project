@@ -26,10 +26,11 @@ app.set("layout", "layouts/layout");
 // ***********************/
 /* Routes
  *************************/
-app.use(static)
+app.use(static);
 
 // Index route
-app.get("/", utilities.handleErrors(baseController.buildHome))
+/*app.get("/", utilities.handleErrors(baseController.buildHome));*/
+app.get("/", baseController.buildHome);
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
