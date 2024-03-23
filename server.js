@@ -23,17 +23,18 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.set("layout", "layouts/layout");
 
+// Inventory routes
+app.use("/inv", inventoryRoute);
+
 // ***********************/
 /* Routes
  *************************/
 app.use(static);
 
+
 // Index route
 /*app.get("/", utilities.handleErrors(baseController.buildHome));*/
 app.get("/", baseController.buildHome);
-
-// Inventory routes
-app.use("/inv", inventoryRoute)
 
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
@@ -44,7 +45,7 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav() // Utilize the utilities module
+  let nav = await utilities.getNav() 
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   res.render("errors/error", {
     title: err.status || 'Server Error',
