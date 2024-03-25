@@ -72,6 +72,7 @@ nav a {
   }
 }
 
+
 /* Index */
 .hero {
   background-image: url("../images/vehicles/delorean.jpg");
@@ -184,6 +185,35 @@ a:hover {
   position: relative;
 }
 
+.card img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto; 
+  border-radius: 5px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 300px; 
+    display: inline-block; 
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+} 
+
+
+/*medium screens*/
+@media screen and (min-width: 450px) {
+  #inv-display{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  hr {
+    display: none;}
+}
+
 /* Large Screen */
 @media screen and (min-width: 700px) {
   body {
@@ -192,6 +222,9 @@ a:hover {
     background-size: cover;
     background-position: center;
   }
+
+  hr {
+    display: none;}
   
   #wrapper {
     background-color: #fff;
@@ -218,7 +251,13 @@ a:hover {
     grid-column: 2 / span 1; 
     grid-row: 1; 
   }
+  #inv-display  {
+    font-weight: bold;
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+  }
 }
 #inv-display {
   list-style: none;
 }
+
