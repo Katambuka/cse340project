@@ -42,7 +42,7 @@ nav ul {
   display: flex;
   justify-content: space-around;
   padding: 0;
-  margin: 5px;
+  margin: 0;
 }
 
 nav ul li {
@@ -54,8 +54,13 @@ nav a {
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
   color: inherit;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: tomato; 
+  text-decoration: none; 
 }
 
 @media screen and (max-width: 768px) {
@@ -139,6 +144,7 @@ h2 {
 
 .upgrades-card span {
   background-color: #01b0d3;
+  color: #fff;
   display: block;
   text-align: center;
   padding: 10px;
