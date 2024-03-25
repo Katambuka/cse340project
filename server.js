@@ -10,10 +10,10 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
 const app = express();
+const pool = require("./database/");
 const static = require("./routes/static");
 const baseController = require("./controllers/baseController");
-const inventoryRoute = require('./routes/inventoryRoute');
-const invController = require("./controllers/invController"); 
+const inventoryRoute = require("./routes/inventoryRoute"); 
 const utilities = require("./utilities"); 
 
 /* ***********************
@@ -21,10 +21,9 @@ const utilities = require("./utilities");
  *************************/
 app.set("view engine", "ejs");
 app.use(expressLayouts);
-app.set("layout", "layouts/layout");
+app.set("layout", "./layouts/layout");
 
-// Inventory routes
-app.use("/inv", inventoryRoute);
+
 
 // ***********************/
 /* Routes
@@ -34,7 +33,13 @@ app.use(static);
 
 // Index route
 /*app.get("/", utilities.handleErrors(baseController.buildHome));*/
-app.get("/", baseController.buildHome);
+//app.get("/", baseController.buildHome);
+
+// Index route
+app.get("/", utilities.handleErrors(baseController.buildHome))
+
+// Inventory routes
+app.use("/inv", inventoryRoute);
 
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})

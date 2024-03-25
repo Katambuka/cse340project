@@ -219,3 +219,6 @@ a:hover {
     grid-row: 1; 
   }
 }
+#inv-display {
+  list-style: none;
+}

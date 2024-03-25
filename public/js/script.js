@@ -1,5 +1,5 @@
 
-/*lazy loading images*/
+//lazy loading images
 function lazyLoadImages() {
   const images = document.querySelectorAll("img[data-src]");
   images.forEach((img) => {
