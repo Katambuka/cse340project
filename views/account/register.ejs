@@ -1,0 +1,21 @@
+
+<div class="login-container">
+   <h1><%- title %></h1>
+   <form action="/account/register" method="post" class="login-form" onsubmit="return validateRegistrationForm()">
+      <fieldset>
+         <label for="firstname" class="login-label">First Name:</label><br>
+         <input type="text" id="firstname" name="account_firstname" class="login-input" placeholder="Enter your first name" required><br><br>
+         <label for="lastname" class="login-label">Last Name:</label><br>
+         <input type="text" id="lastname" name="account_lastname" class="login-input" placeholder="Enter your last name" required><br><br>
+         <label for="email" class="login-label">Email:</label><br>
+         <input type="email" id="email" name="account_email" class="login-input" placeholder="Enter a valid email address" required><br><br>
+         <label for="AccountPassword" class="login-label">Password:</label><br>
+         <input type="password" id="password" name="account_password" class="login-input" placeholder="Enter a password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br><br>
+         <span><p class="password-req">Passwords must be minimum of 12
+            characters and include 1 capital letter,
+            1 number and 1 special character.</p><br></span>
+      </fieldset>
+      <button type="submit" class="login-button" onclick="solve()">Register</button>
+   </form>
+   <p class="login-signup">Already have an account? <a href="/account/login" class="login-signup-link">Login</a></p>
+</div>

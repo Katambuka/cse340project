@@ -217,7 +217,9 @@ a:hover {
     grid-template-columns: 1fr 1fr;
   }
   hr {
-    display: none;}
+    display: none;
+  }
+
 }
 
 /* Large Screen */
@@ -267,3 +269,116 @@ a:hover {
   list-style: none;
 }
 
+/*******account section for login *********/
+/* Container styles */
+.login-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f5ff; 
+  border-radius: 10px;
+}
+
+/* Title styles */
+.login-title {
+  text-align: center;
+  color: #000; 
+}
+
+/* Form styles */
+.login-form {
+  margin-top: 20px;
+}
+
+/* Label styles */
+.login-label {
+  display: block;
+  margin: 5px;
+  color: #fff; 
+}
+
+/* Input styles */
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #000; 
+  border-radius: 5px;
+  box-sizing: border-box; 
+}
+
+/* Button styles */
+.login-button {
+  width: 50%;
+  padding: 10px;
+  background-color: #007bff; 
+  color: #fff; 
+  border: #000;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Button hover effect */
+.login-button:hover {
+  background-color: tomato; 
+}
+
+/* Signup link styles */
+.login-signup {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-signup-link {
+  font-size: 18px;
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.login-signup-link:hover {
+  background-color: tomato;
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 20px;
+}
+
+
+/* Fieldset styles */
+fieldset {
+  background-color: #072c53; 
+  border: 2px solid #ccc; 
+  border-radius: 5px; 
+  padding: 20px; 
+}
+
+.password-req {
+  color: white;
+  font-size: 14px;
+}
+
+input:required:invalid,
+input:focus:invalid {
+  border-color: red; 
+  box-shadow: 0 0 5px red; 
+}
+
+input:required:valid {
+  border-color: green; 
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 600px) {
+  .login-container {
+    max-width: 300px; 
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .login-input {
+    font-size: 14px;
+  }
+}

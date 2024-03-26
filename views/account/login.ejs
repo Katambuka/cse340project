@@ -1,0 +1,15 @@
+
+<div class="login-container">
+   <h1><%- title %></h1>
+   <form action="" method="get" class="login-form">
+      <fieldset>
+         <label for="email" class="login-label">Email:</label><br>
+         <input type="email" id="email" name="account_email" class="login-input" placeholder="Enter a valid email address" required><br><br>
+         <label for="password" class="login-label">Password:</label><br>
+         <input type="password" id="password" name="account_password" class="login-input" placeholder="password" required><br><br>
+      </fieldset>
+      <br><br>
+      <button type="submit" class="login-button" onclick="solve()">Login</button>
+   </form>
+   <p class="login-signup">No account? <a href="/account/register" class="login-signup-link">Sign-up</a></p>
+</div>
