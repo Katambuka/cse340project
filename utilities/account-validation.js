@@ -8,16 +8,17 @@ const accountModel = require("../models/account-model")
   *  Registration Data Validation Rules
   * ********************************* */
 validate.registrationRules = () => {
-   return [
-      // firstname is required and must be string
-      body("account_firstname")
+  return [
+    // firstname is required and must be string
+    body("account_firstname")
       .trim()
       .escape()
       .notEmpty()
       .isLength({ min: 1 })
       .withMessage("Please provide a first name."), // on error this message is sent.
-      // lastname is required and must be string
-      body("account_lastname")
+
+    // lastname is required and must be string
+    body("account_lastname")
       .trim()
       .escape()
       .notEmpty()
@@ -102,7 +103,5 @@ validate.checkRegData = async (req, res, next) => {
   }
   next()
 }
-
-
   
 module.exports = validate;

@@ -1,7 +1,14 @@
 
 <div class="login-container">
    <h1><%- title %></h1>
-   <form action="/account/register" method="post" class="login-form" onsubmit="return validateRegistrationForm()">
+   <% if (errors) { %>
+      <ul class="notice">
+     <% errors.array().forEach(error => { %>
+       <li><%= error.msg %></li>
+    <%  }) %>
+     </ul>
+    <% } %>
+   <form action="/account/register" method="post" class="login-form">
       <fieldset>
          <label for="firstname" class="login-label">First Name:</label><br>
          <input type="text" id="accountFirstname" name="account_firstname" class="login-input" placeholder="Enter your first name" required value="<%= locals.account_firstname %>"><br><br>

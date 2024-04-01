@@ -77,6 +77,13 @@ nav a:hover {
   }
 }
 
+.flash-message {
+  background-color: #ffe6e6;
+  color: #ff3333; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  margin-bottom: 10px;
+}
 
 /* Index */
 .hero {
@@ -364,10 +371,12 @@ input:required:invalid,
 input:focus:invalid {
   border-color: red; 
   box-shadow: 0 0 5px red; 
+  background-color: #ffe6e6; 
 }
 
 input:required:valid {
   border-color: green; 
+  background-color: #e6ffe6; 
 }
 
 /* Media queries for responsiveness */

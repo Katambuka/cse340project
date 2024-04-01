@@ -6,7 +6,7 @@ const regValidate = require("../utilities/account-validation")
 
 
 // Route to add classification
-router.get("/", utilities.handleErrors(accountController.buildAccountManagement));
+router.get("/",utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement));
 
 //Deliver Login View
 router.get("/login", utilities.handleErrors(accountController.buildLogin));

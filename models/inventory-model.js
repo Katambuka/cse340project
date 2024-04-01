@@ -38,11 +38,10 @@ async function getInventoryByItemId(itemId) {
       WHERE inv_id = $1`,
       [itemId]
     )
-    return data.rows
+    return data.rows[0]
   } catch (error) {
     console.error("getclassificationsbyid error " + error)
   }
 }
-
 
 module.exports = { getClassifications, getInventoryByClassificationId,getInventoryByItemId };

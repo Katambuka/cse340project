@@ -5,11 +5,12 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 
 // Route to build inventory by classification view
-// router.get("/type/:classificationId", invController.buildByClassificationId);
-router.get("/type/:classificationId",utilities.handleErrors(invController.buildByClassificationId) );
+router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
-// Route to build inventory by classification view
+
+// Route to build inventory item detail view
 router.get("/detail/:itemId", utilities.handleErrors(invController.buildByItemId));
+
 
 // Route to add classification
 router.get("/", utilities.handleErrors(invController.BuildManagementPage));
@@ -23,8 +24,5 @@ router.get("/add-inventory", utilities.handleErrors(invController.BuildNewVehicl
 //Get inventory for AJAX Route
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
-
-
 // Route for adding a product to an existing
-
 module.exports = router;
