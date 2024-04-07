@@ -345,14 +345,82 @@ a:hover {
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.login-signup-link:hover {
-  background-color: tomato;
-  color: #fff;
-  border-radius: 5px;
-  padding: 8px 15px;
-  font-size: 20px;
+#management-add,
+#management-inv {
+  background-color: #f0f5ff; 
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #000;
 }
 
+#management-add h1,
+#management-inv h2 {
+  color: #000;
+}
+
+#management-add ul,
+#management-inv p {
+  color: #000;
+  list-style:  inside;
+  list-style: none;
+} 
+
+#classification-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f5ff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.form-label input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.required-text {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.notice {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notice li {
+  color: red;
+}
+
+#inventory-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f5ff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#inventory-form h1 {
+  color: #000;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
 /* Fieldset styles */
 fieldset {
