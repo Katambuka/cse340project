@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const invModel = require("../models/inventory-model");
 
+
 const Util = {};
 
 /* ************************
@@ -37,39 +38,55 @@ Util.getNav = async function () {
  * ************************************ */
 
 Util.buildClassificationGrid = async function (data) {
-  try {
-    let grid
-    if (data.length > 0) {
-      grid = '<ul id="inv-display">';
-      data.forEach((vehicle) => {
-        grid += '<li class="card">';
-        grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr />'
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
-      grid += '</li>'
-    })
-    grid += '</ul>'
-  } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  let grid;
+  if (data.length > 0) {
+    grid = '<ul id="inv-display">';
+    data.forEach((vehicle) => {
+      grid += '<li class="card">'
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        'details"><img src="' +
+        vehicle.inv_thumbnail +
+        '" alt="Image of ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' on CSE Motors" /></a>';
+      grid += '<div class="namePrice">';
+      grid += "<hr>";
+      grid += "<h2>";
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' details">' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        "</a>";
+      grid += "</h2>";
+      grid +=
+        "<span>$" +
+        new Intl.NumberFormat("en-US").format(vehicle.inv_price) +
+        "</span>";
+      grid += "</div>";
+      grid += "</li>";
+    });
+    grid += "</ul>";
+  } else {
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
-  return grid
-  } catch (error) {
-    console.error("Error in buildClassificationGrid:", error);
-    throw error;
-  }
+  return grid;
 };
+
 /* **************************************
 * Build the item view HTML
 * ************************************ */
@@ -102,6 +119,9 @@ Util.buildItemGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the item view HTML
+* ************************************ */
 Util.buildItemGrid = async function (data) {
   try {
     let grid = "";
@@ -123,47 +143,42 @@ Util.buildItemGrid = async function (data) {
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-/*Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);*/
-Util.handleErrors = (fn) => async (req, res, next) => {
-  try {
-    await fn(req, res, next);
-  } catch (error) {
-    console.error(`Error at: "${req.originalUrl}": ${error.message}`);
-    res.status(error.status || 500).render("errors/error", {
-      title: error.status || "Server Error",
-      message: error.message,
-      nav: await Util.getNav(),
-    });
-  }
-};
 
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
 Util.buildClassificationList = async function (classification_id = null) {
-  try {
-    let data = await invModel.getClassifications();
-    let classificationList = '<select name="classification_id" id="classificationList" required>';
-    classificationList += "<option value=''>Choose a Classification</option>";
-    data.rows.forEach((row) => {
-      classificationList += '<option value="' + row.classification_id + '"';
-      if (classification_id != null && row.classification_id == classification_id) {
-        classificationList += " selected ";
-      }
-      classificationList += ">" + row.classification_name + "</option>";
-    });
-    classificationList += "</select>";
-    return classificationList;
-  } catch (error) {
-    console.error("Error in buildClassificationList:", error);
-    throw error;
-  }
-};
+  let data = await invModel.getClassifications()
+  let classificationList =
+    '<select name="classification_id" id="classificationList" required>'
+  classificationList += "<option value=''>Choose a Classification</option>"
+  data.rows.forEach((row) => {
+    classificationList += '<option value="' + row.classification_id + '"'
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += " selected "
+    }
+    classificationList += ">" + row.classification_name + "</option>"
+  })
+  classificationList += "</select>"
+  return classificationList
+}
+
 /* ****************************************
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
   try {
     if (req.cookies.jwt) {
-      jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, function (err, accountData) {
+      jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, 
+        function (err, accountData) {
         if (err) {
           req.flash("Please log in");
           res.clearCookie("jwt");

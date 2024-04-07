@@ -1,3 +1,12 @@
+<h1><%- title %></h1>
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
 
 <div class="login-container">
    <h1><%- title %></h1>
@@ -13,3 +22,17 @@
    </form>
    <p class="login-signup">No account? <a href="/account/register" class="login-signup-link">Sign-up</a></p>
 </div>
+<script>
+   const passwordInput = document.querySelector("#password");
+   const passwordHide = document.querySelector("#passwordHide");
+   passwordHide.addEventListener("click", () => {
+      if(passwordInput.getAttribute("type") == "password" ) {
+         passwordInput.setAttribute("type", "text");
+         passwordHide.classList.remove("active");
+      }
+      else {
+         passwordInput.setAttribute("type", "password");
+         passwordHide.classList.add("active");
+      }
+   })
+</script>

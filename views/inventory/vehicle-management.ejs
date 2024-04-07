@@ -1,0 +1,30 @@
+<!-- displaying a flash message -->
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+      <% errors.array().forEach(error=> { %>
+      <li><%= error.msg %></li>
+      <% }) %>
+  </ul> 
+  <% } %>
+
+<div id="management-add">
+  <h1><%- title %></h1>
+  <ul>
+    <li><a href="/inv/add-classification">Add New Classification</a></li>
+    <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+  </ul>
+</div>
+
+<div id="management-inv">
+  <h2>Manage Inventory</h2>
+  <p>Choose a classification to see those inventory items.</p>
+  <%- classificationSelect %>
+</div>  
+
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enable this page.</noscript>
+
+<script src="../../js/inventory.js"></script>
