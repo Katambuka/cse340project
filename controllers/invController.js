@@ -55,7 +55,7 @@ invCont.BuildManagementPage = async function (req, res, next) {
 /* ****************************************
 *  Deliver New Classification
 * *************************************** */
-invCont.BuilNewClassifiation = async function (req, res, next) {
+invCont.BuildNewClassifiation = async function (req, res, next) {
   let nav = await utilities.getNav()
   res.render("./inventory/add-classification", {
     title: "Add New Classifiation",
@@ -149,6 +149,44 @@ invCont.registerNewVehicle = async (req, res) => {
   }
 }
 
+// Controller function to handle requests for the single view of a specific inventory item
+invCont.getSingleView = async (req, res) => {
+  try {
+    const inv_id = req.params.inventoryId;
+    const inventoryItem = await invModel.getInventoryById(inv_id);
+    console.log(inventoryItem);
+    if (!inventoryItem) {
+      return res.status(404).send("Inventory item not found");
+    }
+    let nav = await utilities.getNav();
+    const formattedHTML = utilities.formatInventoryItemHTML(inventoryItem); // Format the inventory item to HTML
+    res.render("inventory/singleview", {
+      title: `${inventoryItem.inv_make} ${inventoryItem.inv_model}`, // Set the title of the view
+      formattedHTML, // Pass the formatted HTML to the view
+      nav, // pas the nav variable into ejs
+    });
+  } catch (error) {
+    console.error("Error fetching inventory item:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+ 
+/* ***************************
+ *  Build inventory by single view
+ * ************************** */
+invCont.buildBySingleViewId = async function (req, res, next) {
+  const inv_id = req.params.inventoryId;
+  const data = await invModel.getInventoryByInvId(inv_id);
+  const grid = await utilities.buildSingleViewGrid(data);
+  let nav = await utilities.getNav();
+  const className =
+    data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model;
+  res.render("./inventory/singleview", {
+    title: className,
+    nav,
+    grid,
+  });
+};
   
 /* ***************************
  *  Return Inventory by Classification As JSON

@@ -422,6 +422,38 @@ a:hover {
   margin-bottom: 20px;
 }
 
+.single-item-display {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color:#f0f5ff;
+  margin-bottom: 20px;
+}
+
+.imageBox {
+  width: 300px; 
+  height: auto;
+}
+
+.single-item-details {
+  flex-grow: 1;
+}
+
+.this-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.price,
+.description,
+.color,
+.miles {
+  margin-bottom: 5px;
+}
+.color, .price {
+  color: green;
+}
+
 /* Fieldset styles */
 fieldset {
   background-color: #072c53; 
@@ -452,10 +484,16 @@ input:required:valid {
   .login-container {
     max-width: 300px; 
   }
+  .single-item-display {
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+  }
 }
 
 @media only screen and (max-width: 400px) {
   .login-input {
     font-size: 14px;
   }
+  
 }
