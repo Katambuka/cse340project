@@ -454,6 +454,10 @@ a:hover {
   color: green;
 }
 
+.form-label{
+  color: #fff;
+}
+
 /* Fieldset styles */
 fieldset {
   background-color: #072c53; 

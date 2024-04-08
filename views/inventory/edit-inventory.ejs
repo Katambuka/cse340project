@@ -1,18 +1,4 @@
-<% if (title) { %>
-  <h1><%= title %></h1>
-  <% } else {
-        res.redirect('/')
-  } %>
-  
-<%- messages() %>
 
-<% if (errors) { %>
-  <ul class="notice">
-      <% errors.array().forEach(error=> { %>
-      <li><%= error.msg %></li>
-      <% }) %>
-  </ul> 
-  <% } %>
     
 <div id="inventory-form">
   <form id="updateForm" class="form-container" action="/inv/edit-inventory" method="post">
@@ -58,8 +44,7 @@
       <input type="text" id="color" name="inv_color" value="<%= locals.inv_color %>" required/>
       </label>
     </fieldset>
-    <button class="submitBtn" type="submit" disable>Update Vehicle</button>
-    
+    <button class="login-button" type="submit" disable>Update Vehicle</button>
     <input type="hidden" name="inv_id"
     <% if(locals.inv_id) {
       %> value="<%= locals.inv_id %>" <%
