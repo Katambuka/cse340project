@@ -109,6 +109,7 @@ async function accountLogin(req, res) {
   return
   }
   try {
+    console.log("Start Login");
    if (await bcrypt.compare(account_password, accountData.account_password)) {
    delete accountData.account_password
    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
@@ -117,6 +118,7 @@ async function accountLogin(req, res) {
      } else {
        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
      }
+     console.log("Redirecting to my account");
    return res.redirect("/account/")
    }
   } catch (error) {

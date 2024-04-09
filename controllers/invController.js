@@ -300,7 +300,7 @@ invCont.BuildDeleteInventory = async function (req, res, next) {
   const itemData = data[0]
   const classificationSelect = await utilities.buildClassificationList(itemData.classification_id)
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
-  res.render("./inventory/delete-inventory", {
+  res.render("./inventory/delete-confirm", {
     title: "Delete " + itemName,
     nav,
     classificationSelect: classificationSelect,
