@@ -1,0 +1,7 @@
+<%- messages() %>
+<form class="input-box" action="/message/send" method="post">
+   <label>Recipient <%- recipientList %></label>
+   <label>Subject <input type="text" name="message_subject" required value="<%- locals.Subject %>"></label>
+   <label>Message <textarea class="message-pane" name="message_body" rows="8" required><%- locals.Body %></textarea></label>
+   <input type="submit" value="SEND">
+</form>

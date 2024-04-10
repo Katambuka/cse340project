@@ -124,21 +124,21 @@ Util.buildClassificationList = async function (classification_id = null) {
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
-   jwt.verify(
+    jwt.verify(
     req.cookies.jwt,
     process.env.ACCESS_TOKEN_SECRET,
     function (err, accountData) {
-     if (err) {
+      if (err) {
       req.flash("Please log in")
       res.clearCookie("jwt")
       return res.redirect("/account/login")
-     }
-     res.locals.accountData = accountData
-     res.locals.loggedin = 1
-     next()
+    }
+    res.locals.accountData = accountData
+    res.locals.loggedin = 1
+    next()
     })
   } else {
-   next()
+    next()
   }
 }
 
@@ -154,5 +154,13 @@ Util.checkLogin = (req, res, next) => {
   }
 }
 
+Util.checkManagement = (req, res, next) => {
+  if (req.locals.accountData && (req.locals.accountData.account_type === "Admin" || req.locals.accountData.account_type === "Employee")) {
+      next();
+  } else {
+      req.flash("notice", "Please log in.");
+      res.redirect("/account/login");
+  }
+};
 
 module.exports = Util;

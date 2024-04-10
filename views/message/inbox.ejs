@@ -1,0 +1,18 @@
+<%- messages() %>
+
+<ul>
+   <li>
+      <a href="/message/compose">Create New Message</a>
+   </li>
+   <% if(!archived) { %>
+   <li>
+      <a href="/message/archive">View <%- archivedMessages %> Archived Messages</a>
+   </li>
+   <% } else { %>
+   <li>
+      <a href="/message">Return to inbox(<%- unarchivedMessages %>)</a>
+   </li>
+   <% } %>
+</ul>
+
+<%- inboxTable %>

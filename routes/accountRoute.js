@@ -22,6 +22,9 @@ router.post(
 //Deliver Registration View
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
+// Route to logout
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
 // Process registration
 router.post(
   "/register", 
@@ -30,5 +33,22 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 )
 
+// Route to logout
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
+// Update account handlers
+router.get("/update/:accountId", utilities.handleErrors(accountController.buildUpdate));
+router.post("/update",
+  regValidate.updateRules(), 
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+  );
+  
+router.post(
+  "/update-password",
+  regValidate.updatePasswordRules(),
+  regValidate.checkUpdatePasswordData,
+  utilities.handleErrors(accountController.updatePassword)
+);
 
 module.exports = router;

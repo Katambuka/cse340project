@@ -344,7 +344,7 @@ invCont.UpdateDeleteInventory = async function (req, res, next) {
     const classificationSelect = await utilities.buildClassificationList(classification_id)
     const itemName = `${inv_make} ${inv_model}`
     req.flash("notice", "Sorry, the deletion failed.")
-    res.status(501).render("inventory/delete-inventory", {
+    res.status(501).render("inventory/delete-confirm", {
     title: "Delete " + itemName,
     nav,
     classificationSelect: classificationSelect,

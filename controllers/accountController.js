@@ -126,4 +126,16 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement};
+/* ****************************************
+ *  Process logout request
+ * ************************************ */
+async function accountLogout(req, res) {
+  res.clearCookie("jwt")
+  delete res.locals.accountData;
+  res.locals.loggedin = 0;
+  req.flash("notice", "Logout successful.")
+  res.redirect("/account");
+  return; 
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, accountLogout};

@@ -1,19 +1,11 @@
-<h1><%- title %></h1>
 <%- messages() %>
-<% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>
 
 <form class="input-box" action="/account/update" method="post">
     <label>First name<input type="text" name="account_firstname" required autocomplete="given-name" value="<%= locals.account_firstname %>"></label>
     <label>Last name<input type="text" name="account_lastname" required autocomplete="family-name" value="<%= locals.account_lastname %>"></label>
     <label>Email address<input type="email" name="account_email" required autocomplete="email" value="<%= locals.account_email %>"></label>
     
-    <input type="submit" value="UPDATE">
+    <input type="submit" value="update">
     <input type="hidden" name="account_id" value="<%= locals.account_id %>">
     <input type="hidden" name="old_email" value="<%= locals.account_email %>"> <%# To exclude from existing email search %>
 </form>
