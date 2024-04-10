@@ -491,7 +491,6 @@ input:required:valid {
   .single-item-display {
     flex-direction: column;
     align-items: center;
-    max-width: 300px;
   }
 }
 
